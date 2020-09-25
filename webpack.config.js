@@ -6,8 +6,7 @@ module.exports={
     entry:{
         // app:'./src/index.js',
         // print:'./src/print.js'
-        app:'./src/index.js',
-        another:'./src/another-module.js',
+        app:'./src/index.js'
     },
     devtool: 'inline-source-map',
     devServer: {
@@ -25,7 +24,7 @@ module.exports={
     plugins:[
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            title:'Output Managements'
+            title:'去重'
         }),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin()

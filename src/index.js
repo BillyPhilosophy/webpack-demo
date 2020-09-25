@@ -1,22 +1,27 @@
-import _ from 'lodash';
-import printMe from './print.js';
+// import _ from 'lodash';
+// import printMe from './print.js';
 // import { cube } from './math.js';
 // import './style.css';
 
-function component() {
+function getComponent() {
     // var element = document.createElement('div');
-    var element = document.createElement('pre');
-    var btn = document.createElement('button');
-    // Lodash（目前通过一个 script 脚本引入）对于执行这一行是必需的
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-    btn.innerHTML = 'Click me and check the console!';
-    btn.onclick = printMe;
-    element.appendChild(btn);
+    // var element = document.createElement('pre');
+    // var btn = document.createElement('button');
+    // element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    // btn.innerHTML = 'Click me and check the console!';
+    // btn.onclick = printMe;
+    // element.appendChild(btn);
     // element.innerHTML = [
     //   'Hello webpack!',
     //   '5 cubed is equal to ' + cube(5)
     // ].join('\n\n');
-    return element;
+
+    return import(/* webpackChunkName: "lodash" */).then(_=>{
+      var element = document.createElement('div');
+      element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+      return element;
+    }).catch(error=>'模块加载错误！')
+  
   }
   
   document.body.appendChild(component());
